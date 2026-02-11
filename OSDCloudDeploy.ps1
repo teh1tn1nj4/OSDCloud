@@ -9,14 +9,43 @@ if ((Get-MyComputerModel) -match 'Virtual') {
 
 #Make sure I have the latest OSD Content
 Write-Host  -ForegroundColor Green "Updating OSD PowerShell Module"
-Install-Module OSD -Force
+Install-Module OSDCloud -Force
 
 Write-Host  -ForegroundColor Green "Importing OSD PowerShell Module"
-Import-Module OSD -Force
+Import-Module OSDCloud -Force
+
+
+
+#Variables to define the Windows OS / Edition etc to be applied during OSDCloud
+$OSName = 'Windows 11 25H2 x64'
+$OSEdition = 'Education'
+$OSActivation = 'Volume'
+$OSLanguage = 'en-us'
+
+#Set OSDCloud Vars
+$Global:MyOSDCloud = [ordered]@{
+    Restart = [bool]$False
+    OEMActivation = [bool]$True
+    WindowsUpdate = [bool]$true
+    WindowsUpdateDrivers = [bool]$true
+    WindowsDefenderUpdate = [bool]$true
+    SetTimeZone = [bool]$true
+    ClearDiskConfirm = [bool]$False
+    ShutdownSetupComplete = [bool]$true
+    CheckSHA1 = [bool]$true
+}
+
+#Launch OSDCloud
+Write-Host "Starting OSDCloud" -ForegroundColor Green
+write-host "Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage"
+
+#Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage
+
+
 
 #Start OSDCloud ZTI the RIGHT way
 Write-Host  -ForegroundColor Green "Start OSDCloud"
-Start-OSDCloud -OSName "Windows 11 25H2" -OSLanguage en-us -OSBuild "25H2" -OSEdition Education -Activation Volume -ZTI
+Start-OSDCloud -OSLanguage en-us -OSBuild "25H2" -OSEdition Education -Activation Volume -ZTI
 
 #Restart from WinPE
 Write-Host  -ForegroundColor Green "Restarting in 20 seconds!"
