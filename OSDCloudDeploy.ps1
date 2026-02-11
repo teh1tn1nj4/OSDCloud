@@ -32,7 +32,6 @@ $Global:MyOSDCloud = [ordered]@{
     SetTimeZone = [bool]$true
     ClearDiskConfirm = [bool]$False
     ShutdownSetupComplete = [bool]$true
-    CheckSHA1 = [bool]$true
 }
 
 #Launch OSDCloud
