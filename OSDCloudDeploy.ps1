@@ -7,15 +7,6 @@ if ((Get-MyComputerModel) -match 'Virtual') {
     Set-DisRes 1600
 }
 
-#Make sure I have the latest OSD Content
-Write-Host  -ForegroundColor Green "Updating OSD PowerShell Module"
-Install-Module OSDCloud -Force
-
-Write-Host  -ForegroundColor Green "Importing OSD PowerShell Module"
-Import-Module OSDCloud -Force
-
-
-
 #Variables to define the Windows OS / Edition etc to be applied during OSDCloud
 $OSName = 'Windows 11 25H2 x64'
 $OSEdition = 'Education'
@@ -37,8 +28,7 @@ $Global:MyOSDCloud = [ordered]@{
 #Launch OSDCloud
 Write-Host "Starting OSDCloud" -ForegroundColor Green
 write-host "Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage"
-
-
+Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage
 
 #Restart from WinPE
 Write-Host  -ForegroundColor Green "Restarting in 20 seconds!"
