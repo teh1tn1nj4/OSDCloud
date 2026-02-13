@@ -38,13 +38,7 @@ $Global:MyOSDCloud = [ordered]@{
 Write-Host "Starting OSDCloud" -ForegroundColor Green
 write-host "Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage"
 
-#Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage
 
-
-
-#Start OSDCloud ZTI the RIGHT way
-Write-Host  -ForegroundColor Green "Start OSDCloud"
-Start-OSDCloud -OSLanguage en-us -OSBuild "25H2" -OSEdition Education -Activation Volume -ZTI
 
 #Restart from WinPE
 Write-Host  -ForegroundColor Green "Restarting in 20 seconds!"
